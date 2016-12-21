@@ -1,3 +1,32 @@
+What Every Computer Scientist Should Know About Floating-Point Arithmetic:
+
+Floating-point Formats
+
+Several different representations of real numbers have been proposed, but by far the most widely used is the floating-point representation.1 Floating-point representations have a base (which is always assumed to be even) and a precision p. If = 10 and p = 3, then the number 0.1 is represented as 1.00 × 10-1. If = 2 and p = 24, then the decimal number 0.1 cannot be represented exactly, but is approximately 1.10011001100110011001101 × 2-4. 
+
+In general, a floating-point number will be represented as ± d.dd... d × e, where d.dd... d is called the significand2 and has p digits. More precisely ± d0 . d1 d2 ... dp-1 × e represents the number.
+
+Relative Error and Ulps
+
+In general, if the floating-point number d.d...d × e is used to represent z, then it is in error by d.d...d - (z/e)p-1 units in the last place.4, 5 The term ulps will be used as shorthand for "units in the last place." If the result of a calculation is the floating-point number nearest to the correct result, it still might be in error by as much as .5 ulp. Another way to measure the difference between a floating-point number and the real number it is approximating is relative error, which is simply the difference between the two numbers divided by the real number.
+
+Guard Digits
+
+Theorem 2
+If x and y are floating-point numbers in a format with parameters and p, and if subtraction is done with p + 1 digits (i.e. one guard digit), then the relative rounding error in the result is less than 2
+
+Cancellation
+
+The last section can be summarized by saying that without a guard digit, the relative error committed when subtracting two nearby quantities can be very large. In other words, the evaluation of any expression containing a subtraction (or an addition of quantities with opposite signs) could result in a relative error so large that all the digits are meaningless (Theorem 1). When subtracting nearby quantities, the most significant digits in the operands match and cancel each other. There are two kinds of cancellation: catastrophic and benign. 
+
+Catastrophic cancellation occurs when the operands are subject to rounding errors. For example in the quadratic formula, the expression b2 - 4ac occurs. The quantities b2 and 4ac are subject to rounding errors since they are the results of floating-point multiplications. Suppose that they are rounded to the nearest floating-point number, and so are accurate to within .5 ulp. When they are subtracted, cancellation can cause many of the accurate digits to disappear, leaving behind mainly digits contaminated by rounding error. 
+
+Benign cancellation occurs when subtracting exactly known quantities. If x and y have no rounding error, then by Theorem 2 if the subtraction is done with a guard digit, the difference x-y has a very small relative error (less than 2).
+
+In order to avoid confusion between exact and computed values, the following notation is used. Whereas x - y denotes the exact difference of x and y, x y denotes the computed difference (i.e., with rounding error). Similarly , , and denote computed addition, multiplication, and division, respectively. All caps indicate the computed value of a function, as in LN(x) or SQRT(x). Lowercase functions and traditional mathematical notation denote their exact values as in ln(x) and. 
+
+
+
 References:
   1. What Every Computer Scientist Should Know About Floating-Point Arithmetic
      https://docs.oracle.com/cd/E19957-01/806-3568/ncg_goldberg.html
