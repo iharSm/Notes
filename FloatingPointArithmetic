@@ -1,0 +1,9 @@
+References:
+  1. What Every Computer Scientist Should Know About Floating-Point Arithmetic
+     https://docs.oracle.com/cd/E19957-01/806-3568/ncg_goldberg.html
+  2. Floating Point Arithmetic: Issues and Limitations
+     https://docs.python.org/3/tutorial/floatingpoint.html#floating-point-arithmetic-issues-and-limitations
+  3. FLOATING-POINT ARITHMETIC
+     http://web.cs.ucla.edu/digital_arithmetic/files/ch8.pdf
+  4. PEP 485 -- A Function for testing approximate equality
+     https://www.python.org/dev/peps/pep-0485/
