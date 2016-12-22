@@ -1,0 +1,6 @@
+Anaconda
+ conda install package-name
+ conda env list
+ conda activate env
+ 
+ 
