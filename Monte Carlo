@@ -1,0 +1,31 @@
+Mont Carlo
+Monte Carlo is useful to estimate the properties of estimates. Assume that we have a population space with a defined process in it and we want to estimate parameters of the process. We can take samples and estimate those parameters. Further, we construct a sampling distribution. The problem with that is that we don’t know the actual values of the parameters. What we can simulate the population process and derive samples from it. In this case we know actual values of estimated parameters, by construction. Hence, construction of sample distribution allows us to conclude if parameters are unbiased, consistent and estimate their variance.
+1.	Binomial Tree vs Monte-Carlo
+2.	Longstaff-Schwartz algorithm for pricing an early exercisable options with Monte-Carlo
+3.	Change of Measure. Give an example when a change of measure is useful in MC
+4.	Grandma problem with monte carlo
+5.	159 q5.20 Given that a stock price at time T is N(100,1), you want to price a digital call struck at 110 by Monte Carlo simulation. What will happen if you do this? Improve the method
+6.	190 q 6.4 how would you determine pi by Monte Carlo simulation
+
+1.	Asian Option pricing with monte carlo
+2.	Central Limit Theorem and types of convergence
+3.	E[X/Y]!=E[X]/E[Y]  - bias exists but becomes negligible as the number of replications increases, and the convergence rate of the estimator is unaffected.
+
+
+•	3 considerations are particularly important for MC computations: time, bias, variance
+•	Model Discretization error. 
+•	Variance Reduction Techniques
+  o	control variates
+    * It exploits information about the errors in estimates of known quantities to reduce the error in an estimate of unknown quantity. 
+    * The idea is to speedup variance convergence, by doing more computations. This works because MC converges very slowly. To reduce Variance by a factor of 2 we need to perform 4*n computations. 
+  o	ntithetic variates
+  o	stratified sampling
+  o	Latin hypercube sampling
+  o	Moment matching methods
+  o	importance sampling
+
+
+
+References: 
+1.	Monte Carlo Methods in Financial Engineering. Paul Glasserman
+2.	Quant Job Interview Questions and Answers. Mark Joshi, Nick Denson
