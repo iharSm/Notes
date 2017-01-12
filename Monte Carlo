@@ -18,6 +18,7 @@ Monte Carlo is useful to estimate the properties of estimates. Assume that we ha
   o	control variates
     * It exploits information about the errors in estimates of known quantities to reduce the error in an estimate of unknown quantity. 
     * The idea is to speedup variance convergence, by doing more computations. This works because MC converges very slowly. To reduce Variance by a factor of 2 we need to perform 4*n computations. 
+    * $Y_1, Y_2, Y_n$ be outputs from some replications$
   o	ntithetic variates
   o	stratified sampling
   o	Latin hypercube sampling
