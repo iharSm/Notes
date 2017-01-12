@@ -1,4 +1,4 @@
-Mont Carlo
+# Mont Carlo
 Monte Carlo is useful to estimate the properties of estimates. Assume that we have a population space with a defined process in it and we want to estimate parameters of the process. We can take samples and estimate those parameters. Further, we construct a sampling distribution. The problem with that is that we don’t know the actual values of the parameters. What we can simulate the population process and derive samples from it. In this case we know actual values of estimated parameters, by construction. Hence, construction of sample distribution allows us to conclude if parameters are unbiased, consistent and estimate their variance.
 1.	Binomial Tree vs Monte-Carlo
 2.	Longstaff-Schwartz algorithm for pricing an early exercisable options with Monte-Carlo
