@@ -1,10 +1,12 @@
 ---
 title: "Monte Carlo"
-output: html_document
+output: pdf_document
 ---
 
-# Mont Carlo
+# Monte Carlo
 Monte Carlo is useful to estimate the properties of estimates. Assume that we have a population space with a defined process in it and we want to estimate parameters of the process. We can take samples and estimate those parameters. Further, we construct a sampling distribution. The problem with that is that we don't know the actual values of the parameters. What we can simulate the population process and derive samples from it. In this case we know actual values of estimated parameters, by construction. Hence, construction of sample distribution allows us to conclude if parameters are unbiased, consistent and estimate their variance.
+
+#Interview Questions
 
 1.	Binomial Tree vs Monte-Carlo
 2.	Longstaff-Schwartz algorithm for pricing an early exercisable options with Monte-Carlo
@@ -20,19 +22,39 @@ Monte Carlo is useful to estimate the properties of estimates. Assume that we ha
 
 .	3 considerations are particularly important for MC computations: time, bias, variance
 .	Model Discretization error. 
-.	Variance Reduction Techniques
-  o	control variates
-    * It exploits information about the errors in estimates of known quantities to reduce the error in an estimate of unknown quantity. 
-    * The idea is to speedup variance convergence, by doing more computations. This works because MC converges very slowly. To reduce Variance by a factor of 2 we need to perform 4*n computations. 
-    * Let $Y_1, Y_2, Y_n$ be outputs from some replications. Now, for each replication we compute $X_i$. Assume that $E[X_i]$ is known. Then for any b: $Y_i(b) = Y_i - b(X_i-E[X])$. Then the sample mean of $E[Y(b)] = $
-  o	ntithetic variates
-  o	stratified sampling
-  o	Latin hypercube sampling
-  o	Moment matching methods
-  o	importance sampling
+
+# Variance Reduction Techniques
+
+  1. control variates
+  
+    + It exploits information about the errors in estimates of known quantities to reduce the error in an estimate of unknown quantity. 
+    + The idea is to speedup variance convergence, by doing more computations. This works because MC converges very slowly. To reduce Variance by a factor of 2 we need to perform 4*n computations. 
+    + Let $Y_1, Y_2, Y_n$ be outputs from some replications. Now, for each replication we compute $X_i$. Assume that $E[X_i]$ is known. Then for any b: $Y_i(b) = Y_i - b(X_i-E[X])$. Then the sample mean $\bar{Y}(b) = \bar{Y} - b(\bar{X} - E[X]) = \frac{1}{n} \sum^n_{i=1}(Y_i - b(X_i - E[X]))$. As an estimator of $E[Y]$, the control estimato is unbiased because $E[\bar{Y}(b)] = E[\bar{Y} - b(\bar{X} - E[X]) = E[\bar{Y}] = E[Y]$
+    + The variance: $Var[Y_i(b)] = \sigma^2_Y - 2b\sigma_X\sigma_Y\rho_{XY} + b^2\sigma^2_X = \sigma^2(b)$. The optimal coefficient $b^* = \frac{\sigma_Y}{\sigma_X}\rho_{XY}$ Then $\frac{\bar{Y}-b^*(\bar{X}-E[X])]}{Var[\bar{Y}]}= 1 - \rho^2_{XY}$
+    
+* A few observations follow from this expression:
+     +  With the optimal coefficient $b^*$  , the effectiveness of a control variate, as measured by the variance reduction ratio (4.4), is determined by the strength of the correlation between the quantity of interest $Y$ and the control $X$. The sign of the correlation is irrelevant because it is absorbed in
+$b^*$.
+    + If the computational effort per replication is roughly the same with and without a control variate, then (4.4) measures the computational speed-up resulting from the use of a control. More precisely, the number of replications of the Yi required to achieve the same variance as n replications of the control variate estimator is $n/(1 - \rho^2_{XY})$.
+    + The variance reduction factor $n/(1 - \rho^2_{XY})$ increases very sharply as $|\rho_{XY}|$ approaches 1 and, accordingly, it drops off quickly as $|\rho_{XY}|$ decreases away from 1. For example, whereas a correlation of 0.95 produces a ten-fold speedup, a correlation of 0.90 yields only a five-fold speed-up; at $|\rho_{XY}|$ = 0.70 the speed-up drops to about a factor of two. This suggests that a rather high degree of correlation is needed for a control variate to yield substantial benefits.
+
+* In derivative pricing simulations, underlying assets provide a virtually universal source of control variates. If $S(t)$ is an asset price then $e^{-rt}S(t)$ is a martingale
+Then the control variate estimator is $\frac{1}{n} \sum^{n}_{i-1}(Y_i-b[S_i(T) - e^{rT}S(0)])$
+If $Y= e^{-rT}(S(T)-K)^+$
+* Any martingale with a known initial value provides a potential control variate precisely becasue its expectation at any future time is its initial value.
+ 
+ 
+ 
+  2. ntithetic variates
+  3.	stratified sampling
+  4. Latin hypercube sampling
+  5.	Moment matching methods
+  6.	importance sampling
 
 
 
-References: 
-1.	Monte Carlo Methods in Financial Engineering. Paul Glasserman
+#References:
+
+1. Monte Carlo Methods in Financial Engineering. Paul Glasserman
+
 2. Quant Job Interview Questions and Answers. Mark Joshi, Nick Denson
