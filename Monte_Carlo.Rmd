@@ -42,11 +42,22 @@ $b^*$.
 Then the control variate estimator is $\frac{1}{n} \sum^{n}_{i-1}(Y_i-b[S_i(T) - e^{rT}S(0)])$
 If $Y= e^{-rT}(S(T)-K)^+$
 * Any martingale with a known initial value provides a potential control variate precisely becasue its expectation at any future time is its initial value.
+* Options or Bonds could potentially become control variates
+* Every instrument that serves as a good hedge also seves as a good control variate, if it can be easily priced. Additionaly, dynamic hedge can remove all the variance assuming complete market and continuous trading.
  
  
  
-  2. ntithetic variates
+  2. Antithetic variates
+   *  The method of antithetic variates attempts to reduce variance by introducing negative dependence between pairs of replications. The most aplicable form is based on the observation that if $U$ is uniformly distributed on $[0,1]$ then $1-U$ is too. Hence, if we generate a path using as inputs $U_1, U_2, ... U_n$, we can generate a second path using $1-U_1, 1-U_2,..., 1-U_n$.
+   *  The variables $U_i and 1-U_i$ form an antithetic pair in the sence that a large value computed from the first path could be balanced out by the value computed by the antithetic path, thus reducing the variance. 
+   *  This observations extend to other distribution through the inverse transform method: $F^{-1}(U)$ and $F^{-1}(-U)$ both have distribution $F$ but are antithetic to each other because $F^{-1}$ is monotone. In particular, if $Z_1, Z_2, ... Z_n i.i.d N(0,1)$ antithetic variables could be formed by  $-Z_1, -Z_2, ... -Z_n$. 
   3.	stratified sampling
+      * Stratified sampling refers broadly to any sampling mechanism that constrains the fraction of observation drawn from specific subsets (or strata) of the sample space. Suppose, more specifically, that our goal is to estimate $E[Y]$ with Y real-valued, and let $A_1, ... A_K$ be disjoint subsets of the real line for which $P(Y \in \cup_iA_i)=1$. Then $E[Y] = \sum^K_{i=1}P(Y\in A_i) E[Y|Y\in A_i] = \sum^K_{i=1}p_iE[Y|Y\in A_i]$. In random sampling, we generate  independent $Y_i,..., Y_n$ having the same distributino as Y. The fraction of these samples falling in $A_i$ will not in general equal $p_i$, though it would approach $p_i$ as the sample size n increased. In stratified sampling, we decide in advance what fraction of the samples should be drawn from each stratum $A_i$; each observation drawn from $A_i$ is constrined to have the distribution of $Y$ conditional on $Y\in A_i$.
+      * Stratifying nonuniform distributions.
+        Let F be a CDF on the real line and let $$F^{-1}(u) = inf{x: F(x) <= u}$$ be its generalised inverse. Given probabilities $p_1,...,p_K$ summing to 1, define 
+        $$a_0=-\infty, a_1 = F^{-1}(p_1), a_2 = F^{-1}(p_1+p_2), ..., a_k = F^{-1}(p_1+...+p_K)=F^{-1} (1)$$
+        
+      
   4. Latin hypercube sampling
   5.	Moment matching methods
   6.	importance sampling
