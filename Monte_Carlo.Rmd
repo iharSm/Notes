@@ -56,12 +56,22 @@ If $Y= e^{-rT}(S(T)-K)^+$
       * Stratifying nonuniform distributions.
         Let F be a CDF on the real line and let $$F^{-1}(u) = inf{x: F(x) <= u}$$ be its generalised inverse. Given probabilities $p_1,...,p_K$ summing to 1, define 
         $$a_0=-\infty, a_1 = F^{-1}(p_1), a_2 = F^{-1}(p_1+p_2), ..., a_k = F^{-1}(p_1+...+p_K)=F^{-1} (1)$$
-        
+        Define strata
+        $$A_i=(a_{i-1},a_i] for i = 1,...,K$$
+  To use the sets $A_1,...A_K$ for stratified sampling, we need to be able to generate samples of Y conditional on $Y \in A_i$. If $U~ Unif[0,1]$ then $V= a_{i-1} + U(a_i-a_{i-1})$ is uniformly distributed between $a_{i-1}$ and $a_i$ and then $F^{-1}(V)$ has a distribution of Y conditional on $Y\in A_i$
       
   4. Latin hypercube sampling
   5.	Moment matching methods
   6.	importance sampling
-
+      * Importance sampling attempts to reduce variance by changing the probability measure from which paths are generated. We change measures to try to give more weight to "important" outcomes thereby increasing sampling efficiency. 
+      
+      Consider the problem of estimating 
+      $$\alpha = E[h(X)]=\int h(x)f(x)dx$$, where $X\in \Re^d$ is a r.v. with probability density $f$, and $h: \Re^d \to \Re$. Let $g$ be any other probability density on $\Re^d$ s.t. $f(x)>0 => g(x)>0 \forall x$. Then $$\alpha= \int h(x)\frac{f(x)}{g(x)}g(x)dx$$. This integral can be interpreted as an expectation with respect to the density $g$: $$\alpha = \tilde{E}[h(X)\frac{f(x)}{g(X)}]$$. If $X_i$ are now independent draws from g, the importance sampling estimate associated with g is 
+      $$\tilde{\alpha_g} = \tilde{\alpha_g}(n) = \frac{1}{n}\sum^n_{i=1} h(X_i)\frac{f(X_i)}{g(X_i)}$$. The weight $\frac{f(X_i)}{g(X_i)}$ is the likelihood ratio or Radon-Nikodym derivative. If follows that $\tilde{\alpha}_g$ is an unbiased estimator of $\alpha$
+      *   To compare variances with and without importance sampling it therefore suffices to compare second moments:
+      $$\tilde{E}[(h(X)\frac{f(X)}{g(X)})^2] = E[(h(X)^2\frac{f(X)}{g(X)})]$$
+This could be larger or smaller than the second moment $E[h(X)^2]$ without importance sampling. Successful importance sampling lies in the art of selecting an effective importance sampling density $g$.
+      *   Nevertheless, this optimal choice of g does provide some useful guidance: in designing an effective importance sampling strategy, we should try to sample in proportion to the product of h and f. In option pricing applications, h is typically a discounted payoff and f is the risk-neutral density of a discrete path of underlying assets. In this case, the "importance" of a path is measured by the product of its discounted payoff and its probability density.
 
 
 #References:
