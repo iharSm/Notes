@@ -8,14 +8,16 @@ Monte Carlo is useful to estimate the properties of estimates. Assume that we ha
 
 #Interview Questions
 
-1.	Binomial Tree vs Monte-Carlo
+1.	Binomial Tree vs Monte-Carlo (2.55)
+    *  Monte Carlo has low convergence rate (still not slower then binomial), but path dependence is easy. Early excercise is hard.  
+    *   As a rule of thumb, binomial trie is good for low-dimensional problems involving early excercise, and Monte Carlo for high-dimensional problems involving path-dependence.
 2.	Longstaff-Schwartz algorithm for pricing an early exercisable options with Monte-Carlo
 3.	Change of Measure. Give an example when a change of measure is useful in MC
 4.	Grandma problem with monte carlo
 5.	159 q5.20 Given that a stock price at time T is N(100,1), you want to price a digital call struck at 110 by Monte Carlo simulation. What will happen if you do this? Improve the method
 6.	190 q 6.4 how would you determine pi by Monte Carlo simulation
 
-1.	Asian Option pricing with monte carlo
+1.	American Asian Option pricing with monte carlo
 2.	Central Limit Theorem and types of convergence
 3.	$E[X/Y]!=E[X]/E[Y]$  - bias exists but becomes negligible as the number of replications increases, and the convergence rate of the estimator is unaffected.
 
@@ -74,8 +76,64 @@ This could be larger or smaller than the second moment $E[h(X)^2]$ without impor
       *   Nevertheless, this optimal choice of g does provide some useful guidance: in designing an effective importance sampling strategy, we should try to sample in proportion to the product of h and f. In option pricing applications, h is typically a discounted payoff and f is the risk-neutral density of a discrete path of underlying assets. In this case, the "importance" of a path is measured by the product of its discounted payoff and its probability density.
 
 
+# Pricing American Options
+
+  *  Let $U(t), 0 \leq t\leq T$ be the discounted payoff at time $t$. 
+  *  $T \in [0,T]$ be a class of admissible stopping times.
+    
+  1. Dynamic programming formulation
+      *  $\tilde{h}_i$ denotes the payoff function for exercise at $t_i$, $\tilde{V}_i(x)$ - denotes the value of the option at $t_i$ given $X_i=x$, assuming the option has not previously been exercised. The value is determined recursively as follows:
+      $$\tilde{V}_m(x)=\tilde{h}_m(x)$$
+      $$\tilde{V}_{i-1}(x)=max\{\tilde{h}_{i-1}(x), E[D_{i-1,i}(X_i)\tilde{V}_i(X_i)|X_{i-1}=x]\}$$
+      where $D_{i-1,i}(X_i)$ is a discount factor from $t_{i-1}$ to $t_i$.
+      
+      *  Stopping Rules - it is convinient to view the pricing problem through stopping rules and exercise regions. 
+          *  Any stopping time $\tau$ determinees a value $V^{(\tau)}_0(X_0) = E[h_{\tau}(X_{\tau})]$,
+          *  Conversely, any rule assigning a value $\tilde{V}_i(x)$ to each state $x$ and exercise opportunity i, with $\tilde{V}_m=h_m$, determines a stopping rule
+          $$\tilde{\tau}=min\{i\in \{1,...,m\}: h_i(X_i)\geq \tilde{V}_i(X_i)\}$$
+          The exercise region determined by $\tilde{V}_i$ at the ith exercise date is the set
+          $$\{x:h_i(x)\geq \tilde{V}_i(x)\}$$ and the continuation region is the complement of this set. The stopping rule $\tilde{\tau}$ can thus also be described as the first time the Markov chain $X_i$ enters an exercise region.
+          *  Continuation value. The continuation value of an American option with a finite numer of exercise opportunities is the value of holding rather than exercising the option.
+          *  The continuation value in state x at date $t_i$ is:
+          $$C_i(x) = E[V_{i+1}(X_{i+1})|X_i=x], i=0,...,m-1$$
+          *  This also satisfy a dynamic programming recursion: $C_m\equiv 0$ and 
+          $$C_i(x) = E[max\{h_{i+1}(X_{i+1}),C_{i+1}(i+1)\}|X_i=x], for i =0,...,m-1$$
+          *  The option value is $C_0(X_0)$, the continuation value at time 0.
+          
+  2. Parametric Approximations
+  3. Random Tree Methods
+  4. State-Space Partitioning 
+  5. Stochastic Mesh Methods
+  6. Regression-Based Methods and Weights
+    * Each contunuation value $C_i(x)$ is the regressin of the option value $V_{i+1}(X_{i+1})$ on the current state $x$. Hence, approximate $C_i$ by a linear combination of known functions of the current state and use regression to estimate the best coefficients in this approximation. This approach is relatively fast and broadly applicable; its accuracy depends on the choice of functions used in the regression.    
+    * Regression-based methods assume that continuation value has the form
+    $$ E[V_{i+1}(X_{i+1})|X_i=x]=\sum^M_{r=1}\beta_{ir}\phi_r(x)=\beta^T_i\phi(x)$$ for some basis function $\phi$ and constants $\beta$. Then, 
+    $$\beta_i= (E[\psi(X_i)\psi(X_i)^T])^{-1}E[\psi(X_i)V_{i+1}(X_{i+1})] \equiv B^{-1}_\psi B_{\psi V}$$
+    * The coefficients $\beta_{ir}$ could be estimated from observations of pairs $(X_{ij}, V_{i+1}(X_{i+1,j})), j=1,...,b$, each consisting of the state at time i and the corresponding option value at time i+1. 
+    * The estimate $\hat{\beta}_i$ then defines an estimate $\hat{C}_i(x)=\hat{\beta}^T_i\psi(x)$
+  
+  
+  
+  
 #References:
 
 1. Monte Carlo Methods in Financial Engineering. Paul Glasserman
 
 2. Quant Job Interview Questions and Answers. Mark Joshi, Nick Denson
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
