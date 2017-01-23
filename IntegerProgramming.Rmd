@@ -1,0 +1,13 @@
+---
+title: "Integer Programming"
+output: pdf_document
+---
+
+*  An integer programming problem is an LP in which some or all of the variables are required to be non-negative integers. LP relaxation of the IP is the LP obtained by ommiting integer constrains.
+*  The feasible region fro any IP must be contained in the feasible region fro the corresponding LP relaxation. Optimal z-value for LP relaxation $\geq$ optimal z-value for IP. 
+
+
+
+## References:
+
+1. Operations Research: Applications and Algorithms. Winston.

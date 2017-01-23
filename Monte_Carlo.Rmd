@@ -109,9 +109,22 @@ This could be larger or smaller than the second moment $E[h(X)^2]$ without impor
     * Regression-based methods assume that continuation value has the form
     $$ E[V_{i+1}(X_{i+1})|X_i=x]=\sum^M_{r=1}\beta_{ir}\phi_r(x)=\beta^T_i\phi(x)$$ for some basis function $\phi$ and constants $\beta$. Then, 
     $$\beta_i= (E[\psi(X_i)\psi(X_i)^T])^{-1}E[\psi(X_i)V_{i+1}(X_{i+1})] \equiv B^{-1}_\psi B_{\psi V}$$
-    * The coefficients $\beta_{ir}$ could be estimated from observations of pairs $(X_{ij}, V_{i+1}(X_{i+1,j})), j=1,...,b$, each consisting of the state at time i and the corresponding option value at time i+1. 
+    
+    * The coefficients $\beta_{ir}$ could be estimated from observations of pairs
+    $$(X_{ij}, V_{i+1}(X_{i+1,j})), j=1,...,b$$, each consisting of the state at time i and the corresponding option value at time i+1. 
     * The estimate $\hat{\beta}_i$ then defines an estimate $\hat{C}_i(x)=\hat{\beta}^T_i\psi(x)$
-  
+    * Regression-based Pricing Algorithm (Tsitsiklis and Van Roy)
+        * Simulate $b$ independent paths $\{X_{1j},...,X_{mj}\}, j=1,...,b$ of the Markov chain.
+        * At terminal nodes, set $\hat{V}_{mj}=h_m(X_{mj}),j=1,...,b$.
+        * Apply backward induction: for $i=m-1,...,1,
+            * given estimated values $\hat{V}_{i+1,j}, j=1,...,b$, use regression as above to calculate $\hat{\beta}_i=\hat{B}^{-1}_\psi\hat{B}_{\psi V};$
+            * set $\hat{V}_{ij}=max\{h_i(X_{ij}, \hat{C}_i(X_{ij}\},     j=1,...,b$, where $\hat{C}_i(x)=\hat{\beta}^T_i\psi(x)$
+            * Set $\hat{V}_0=(\hat{V}_{11}+...+\hat{V}_{ib}/b)$
+    *   Longstaff and Schwartz combine continuation values with their interleaving estimator. Then
+    $$\hat{V}_{ij}=\left\{ \begin{array}{ll}
+         h_i(X_{ij}) & \mbox{$h_i(X_{ij})\geq \hat{C}_i(X_{ij})$};\\
+        \hat{V}_{i+1,j} & \mbox{$h_i(X_{ij}< \hat{C}_i(X_{ij}))$}.\end{array} \right.$$
+    *  The success of any regression-based approach clearly depends on the choice of basis function. Polynomials are popular choice. Through Taylor expansion any sufficiently smooth value function can be approximated by polynomials.
   
   
   
