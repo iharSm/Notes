@@ -1,0 +1,23 @@
+---
+title: "Portfolio theory"
+output: pdf_document
+---
+#CAPM
+  1. The Capital Market Line (CML) relates the excess expected return on an efficient portfolio to its risk.
+  $$ \mu_R = \mu_f + \frac{\mu_M - \mu_f}{\sigma_M}\sigma_R $$
+      -  The slope of the CML can be interpreted as the ratio of the risk premium to the standard deviation of the market portfolio - Sharpe's reward to risk ratio
+      -  The reward-to-risk ratio for any efficien portfolio equals that ratio for the market portfolio.
+      -   The CAPM says that the optimal way to invest is to
+          1. decide on the risk $\sigma_R$ that you can tolerate, $0\leq \sigma_R \leq \sigma_M$
+          2. calculate $\omega = \sigma_R/\sigma_M$
+          3. invest $\omega$ proportion of your investment in an index fund, that is, a fund that tracks that market as a whole.
+          4. invest $1-\omega$ proportion of your investment  in risk-free Treasury bills, or a money-market fund.
+  2. The security market line(SML) relates the excess return on an asset to the slope of its regression on the market portfolio. The SML differs from the CML in that the SML applies to all assets while the CML applies only to efficient portfolios.
+      -  It follows from the theory of best linear prediction that $\beta_j = \frac{\sigma_{jM}}{\sigma^2_M}$ is the slope of the best linar predictor of the jth security's retuns using retruns of hte market portfolio as the predictor varial. This fact follows from equation for the slope of a best linear predictor of the jth security's returns using returns of the market portfolio as the predictor variable. This fact follows from equation for the slop of a best linear prediction equation.
+
+     - Using CAPM, it can be shown that $\mu_j - \mu_f = \beta_j(\mu_M - \mu_f)$. In this equation $\beta_j$ is a variable in the linear equation, not the slope; more precisely, $\mu_j$ is a linear function of $\beta_j$  with slope $\mu_M - \mu_f$. This point is worth remembering. Otherwisee, there could be some confusion since $\beta_j$ was defined earlier as a slope of a regression model. In other woeds, $\beta_j$ is alope in one context but is the inependent variable in the SML. The $\beta_j$ is a measure of how "aggressive" the jth asset is. 
+     
+  3. Using the CAPM in Portfolio Analysis
+    -  There is a serious danger here: These estimates depend heavily on the calidity of teh CAPM assumptions. Any or all ofthe quantities beta, $\sigma^2_\epsilon, \sigma^2_M, \mu_M$, and $\mu_f$ could depend on time t. However, it is generally assumed that the betas and $\sigma^2_\epsilon$ of the assets as well as $sigma^2_M$ and $\mu_M$  of the market are independent of t so that these paremeters can be estimated assuming stationarity of the time series o returns.
+    
+# Factor Models and Principal Components
