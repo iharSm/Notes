@@ -1,6 +1,6 @@
 ---
 title: "Statistics"
-output: html_document
+output: pdf_document
 ---
 
 # Cross Validation
@@ -26,7 +26,7 @@ $$ AIC= -2\log f\{Y^{obs}|\hat{(Y^{obs})}\} + 2p$$
 # maximum Likelihood
   1. Bayesian inference vs MLE
   
-  2. $\hat{\sigma}^2_{MLE}=n^{-1}\sum^n_{i=1}(Y_i-x^T_i\hat{\beta})^2 - is biased downwards, but the bias can be eleminated if $n^{-1}$is replaced by $\{n-(p+1)\}^{-1}$
+  2. $\hat{\sigma}^2_{MLE}=n^{-1}\sum^n_{i=1}(Y_i-x^T_i\hat{\beta})^2$ - is biased downwards, but the bias can be eleminated if $n^{-1}$is replaced by $\{n-(p+1)\}^{-1}$
 # Box Cox transformation
   -   $$Y^{(\alpha)}=\beta_0 + X_{i,1}\beta_1 + ... + X_{i,p}\beta_p + \epsilon_i$$
   where $\epsilon_1,...,\epsilon_n$ are i.i.d. $N(0,\sigma^2_\epsilon)$ for some $\sigma_\epsilon$ In contrast to the TBS (transform both sides) model only the response is transformed.  

@@ -4,7 +4,36 @@ output: pdf_document
 ---
 
 *  An integer programming problem is an LP in which some or all of the variables are required to be non-negative integers. LP relaxation of the IP is the LP obtained by ommiting integer constrains.
-*  The feasible region fro any IP must be contained in the feasible region fro the corresponding LP relaxation. Optimal z-value for LP relaxation $\geq$ optimal z-value for IP. 
+*  The feasible region from any IP must be contained in the feasible region fro the corresponding LP relaxation. Optimal z-value for LP relaxation $\geq$ optimal z-value for IP. 
+
+
+# Cutting plane algorithms for pure integer programming 
+    1. Solve the continuous problem as an LP
+    2. If the optimal variables are integer then optimum solution has been found.
+    Otherwise 
+    3. Generate a cut:  i.e.  a constraint which is satisfied by all interger solutions to the problem but not by the current LP solution
+        -  Choose a basic variable $x_i$ which is currently non-integer.
+        -  Construct the corresponding constraint and add it to the problem
+        -  Go to step 1.
+    4. Add this new constraint and go to step 1. 
+    
+- The algorithm could take an excessive amount of time in some cases. If the algorihtm is stopped prematurely then one does not have a good suboptimal solution.
+    
+# Branch and bound algorithm for integer programming
+  - most successful to this date.
+  - Algo:
+    1. solve the continuous LP problem.
+
+
+# Simplex algorithm
+
+  1. 
+
+
+
+
+
+
 
 
 
