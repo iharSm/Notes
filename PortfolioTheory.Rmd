@@ -21,3 +21,55 @@ output: pdf_document
     -  There is a serious danger here: These estimates depend heavily on the calidity of teh CAPM assumptions. Any or all ofthe quantities beta, $\sigma^2_\epsilon, \sigma^2_M, \mu_M$, and $\mu_f$ could depend on time t. However, it is generally assumed that the betas and $\sigma^2_\epsilon$ of the assets as well as $sigma^2_M$ and $\mu_M$  of the market are independent of t so that these paremeters can be estimated assuming stationarity of the time series o returns.
     
 # Factor Models and Principal Components
+
+# Investments
+  1. Investment philosophy is a way of thinking about the markets and investor behavior.
+      - view about how people learn
+      - view about the behavior of markets. Its efficiencies and inaficiencies
+      - build investment strategy, reflecting your believes
+  2. Investment strategy is a way of putting into practice an investment philosopy
+  3. Investors have the following important characteristics:
+      -  risk preferences
+        - risk aversion vary across investors at any point of time
+        - more risk implies higer expected return
+      -  time horizon 
+      -  tax status
+  
+  4. Asset Allocation determines proportion of equities, fixed-income and real assets in the portfolio
+      - Passive asset allocation -  based on the mean-variance framework
+          - proportions determined by risk preference with statistical techniques
+          - This approach is as good as its underlying assumptions. For example, if correlations between asset classes are unstable Markowitz portfolio approach is useless.
+      - Active asset allocation (Market Timing)  -  determined by the view on the market. Allocate more than you normally would to assets/markets that are undervalued
+        - Approaches
+          -  non-financial indicators:
+            - feel good indicators. Usually are not leading indicators.
+            - Hype indicators: measure stock price bubble. 
+          -  technical indicators: price volume volatility
+          -  reversion to the mean: every asset has a normal range of value and revert to normal
+          - fundamentals: intrinsic value for the market. It is showen that markets are correlated with fundumentals, however, it is hard to find leading indicators.
+              - DCF 
+              - relative analysis
+  5. Security selection
+    - based on fundamentals, technical analysis nad ahead of information releases
+    - Fundumental investors can be:
+        - value investors ( buy low PE low PBV stocks - trade at less than the value of assets in place)
+          - intrinsic value investors: do DCFs
+          - relative value investors: use multiples and fundamentals to identify undervalued stocks
+          - contrarian investors: invest in stocks others have given up
+          - activists: invest in poorly managed stocks and try to influence them
+        - growth investors ( buy high PE and high PBV stocks, expecting higher future growth)
+    - Technical investors:
+        - momentum
+        - reversal 
+
+# Risk Parity
+  1. Risk Parity model is used to construct portfolios with equal contribution of each asset to the total risk. Usually have lowe vol and higher SR. 
+   -   Portfolios outperform equal-weighted asset allocation portfolios. The strategy's superior risk-adjusted returns are largely a function of its lower volatility and downside protection rather than superior returns. 
+   -   
+
+# References:
+
+1.  Damodaran. Investment Philosophy: The Secret Ingredient in Investment Success
+www.stern.nyu.edu/~adamodar/pdfiles/country/Brazilinvphil.ppt
+2.  http://www.lazardnet.com/docs/sp0/29613/APerformanceAnalysisOfRiskParity_LazardResearch.pdf?pagename=Investment+Research
+3.  On the properties of equally-weighted risk contributions portfolios http://www.thierry-roncalli.com/download/erc.pdf
